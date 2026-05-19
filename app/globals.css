@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-charcoal: #1c1c1e;
+  --color-forest-green: #1a4d35;
+  --color-sage-green: #2d7a55;
+  --color-warm-white: #f9f9f7;
+  --color-light-grey: #f0efeb;
+  --color-muted: #6b7280;
+
+  /* Fonts */
+  --font-cormorant: var(--font-cormorant), Georgia, serif;
+  --font-outfit: var(--font-outfit), system-ui, sans-serif;
+
+  /* Font Sizes */
+  --font-size-display-xl: 4.5rem;
+  --line-height-display-xl: 1.1;
+  --font-size-display-lg: 3.5rem;
+  --line-height-display-lg: 1.15;
+  --font-size-display-md: 2.5rem;
+  --line-height-display-md: 1.2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cormorant);
+  }
+
+  body {
+    font-family: var(--font-outfit);
+    background-color: var(--color-warm-white);
+    color: var(--color-charcoal);
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }
+
+  .container-max {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
