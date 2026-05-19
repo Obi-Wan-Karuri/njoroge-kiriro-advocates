@@ -14,8 +14,30 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
+function isDarkAtPoint(x: number, y: number): boolean {
+  const darkSectionIds = ["hero", "testimonials"];
+  const elements = document.elementsFromPoint(x, y);
+
+  for (const el of elements) {
+    // Always treat navbar as dark
+    if (el.tagName === "HEADER") return true;
+    if (el.closest("header")) return true;
+
+    // Check section ids
+    const section = el.closest("section");
+    if (section) {
+      if (darkSectionIds.includes(section.id)) return true;
+      if (section.classList.contains("bg-charcoal")) return true;
+    }
+
+    // Check footer
+    if (el.tagName === "FOOTER" || el.closest("footer")) return true;
+  }
+  return false;
+}
+
 export default function Cursor() {
-  const [isOnDark, setIsOnDark] = useState(false);
+  const [isOnDark, setIsOnDark] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const mouseRef = useRef<CursorPos>({ x: -100, y: -100 });
   const trailRef = useRef<CursorPos[]>(
@@ -29,27 +51,7 @@ export default function Cursor() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
-
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      if (el) {
-        const section = el.closest("section, footer, header");
-        const navbar = el.closest("header");
-        const heroSection = document.querySelector("#hero") || document.querySelector("section");
-
-        if (navbar) {
-          setIsOnDark(true);
-        } else if (section) {
-          const isDark =
-            section.id === "testimonials" ||
-            section.tagName === "FOOTER" ||
-            section.classList.contains("bg-charcoal") ||
-            section === heroSection;
-          setIsOnDark(isDark);
-        } else {
-          setIsOnDark(false);
-        }
-      }
-
+      setIsOnDark(isDarkAtPoint(e.clientX, e.clientY));
       const target = e.target as HTMLElement;
       setIsHovering(!!target.closest("a, button, input, textarea, select"));
     };
@@ -58,7 +60,6 @@ export default function Cursor() {
       const mouse = mouseRef.current;
       const trail = trailRef.current;
 
-      // Smoothly interpolate each trail point toward the one ahead of it
       trail[0] = {
         x: lerp(trail[0].x, mouse.x, LERP_FACTOR * 2),
         y: lerp(trail[0].y, mouse.y, LERP_FACTOR * 2),
@@ -71,12 +72,10 @@ export default function Cursor() {
         };
       }
 
-      // Update dot position directly via DOM for max smoothness
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mouse.x - 3}px, ${mouse.y - 3}px)`;
       }
 
-      // Update main ring
       if (ringRef.current) {
         const size = isHovering ? 56 : 40;
         ringRef.current.style.transform = `translate(${trail[0].x - size / 2}px, ${trail[0].y - size / 2}px)`;
@@ -84,7 +83,6 @@ export default function Cursor() {
         ringRef.current.style.height = `${size}px`;
       }
 
-      // Update trail elements
       trailElemsRef.current.forEach((el, i) => {
         if (!el) return;
         const t = trail[i];
@@ -116,7 +114,6 @@ export default function Cursor() {
     <>
       <style>{`* { cursor: none !important; }`}</style>
 
-      {/* Trail rings */}
       {Array.from({ length: TRAIL_LENGTH }, (_, i) => (
         <div
           key={i}
@@ -134,7 +131,6 @@ export default function Cursor() {
         />
       ))}
 
-      {/* Main ring */}
       <div
         ref={ringRef}
         style={{
@@ -150,7 +146,6 @@ export default function Cursor() {
         }}
       />
 
-      {/* Dot */}
       <div
         ref={dotRef}
         style={{
