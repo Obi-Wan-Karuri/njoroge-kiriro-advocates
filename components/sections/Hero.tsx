@@ -17,7 +17,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-charcoal overflow-hidden">
+    <section id="hero"className="relative min-h-screen flex items-center bg-charcoal overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div

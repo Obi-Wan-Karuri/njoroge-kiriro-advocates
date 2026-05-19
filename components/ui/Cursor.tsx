@@ -33,11 +33,17 @@ export default function Cursor() {
       const el = document.elementFromPoint(e.clientX, e.clientY);
       if (el) {
         const section = el.closest("section, footer, header");
-        if (section) {
+        const navbar = el.closest("header");
+        const heroSection = document.querySelector("#hero") || document.querySelector("section");
+
+        if (navbar) {
+          setIsOnDark(true);
+        } else if (section) {
           const isDark =
             section.id === "testimonials" ||
             section.tagName === "FOOTER" ||
-            section.classList.contains("bg-charcoal");
+            section.classList.contains("bg-charcoal") ||
+            section === heroSection;
           setIsOnDark(isDark);
         } else {
           setIsOnDark(false);
