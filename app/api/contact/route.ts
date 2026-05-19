@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { z } from "zod";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const schema = z.object({
   name: z.string().min(2),
@@ -14,6 +11,9 @@ const schema = z.object({
 
 export async function POST(req: Request) {
   try {
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const body = await req.json();
     const data = schema.parse(body);
 
@@ -46,9 +46,7 @@ export async function POST(req: Request) {
             <p style="color: #6b7280; margin: 0 0 8px;">Message</p>
             <p style="color: #1c1c1e; margin: 0; line-height: 1.6;">${data.message}</p>
           </div>
-          <p style="color: #6b7280; font-size: 12px; margin-top: 24px;">
-            Sent from the Njoroge Kiriro Advocates website contact form.
-          </p>
+          <p style="color: #6b7280; font-size: 12px; margin-top: 24px;">Sent from the Njoroge Kiriro Advocates website contact form.</p>
         </div>
       `,
     });
