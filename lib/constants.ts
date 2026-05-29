@@ -1,7 +1,7 @@
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Practice Areas", href: "#practice-areas" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Blog", href: "#blog" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
@@ -26,9 +26,9 @@ export const practiceAreas = [
     icon: "Heart",
   },
   {
-    title: "Litigation & Dispute Resolution",
+    title: "Litigation & Alternative Dispute Resolution",
     description:
-      "We represent clients in civil and commercial disputes before Kenyan courts and arbitral tribunals.",
+      "We represent clients in civil and commercial disputes before Kenyan courts and arbitral tribunals, and offer mediation and arbitration as efficient alternatives to litigation.",
     icon: "Scale",
   },
   {
@@ -42,6 +42,24 @@ export const practiceAreas = [
     description:
       "We assist individuals and businesses with work permits, visas, residency, and citizenship applications in Kenya.",
     icon: "Globe",
+  },
+  {
+    title: "Environmental Law",
+    description:
+      "We advise on environmental compliance, impact assessments, and regulatory matters, helping clients navigate Kenya's environmental legal framework responsibly.",
+    icon: "Leaf",
+  },
+  {
+    title: "Carbon Credits Consultancy",
+    description:
+      "We provide legal guidance on carbon credit projects, voluntary carbon markets, and ESG compliance, positioning clients at the forefront of Kenya's green economy.",
+    icon: "TreePine",
+  },
+  {
+    title: "Insurance Law",
+    description:
+      "We handle insurance disputes, policy interpretation, and claims management for both insurers and policyholders across Kenya.",
+    icon: "Shield",
   },
 ];
 

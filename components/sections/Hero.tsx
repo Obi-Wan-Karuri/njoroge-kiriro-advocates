@@ -39,14 +39,7 @@ export default function Hero() {
 
       <div className="container-max section-padding relative z-10 w-full">
         <div className="max-w-3xl">
-          {/* Eyebrow */}
-          <p
-            className={`font-outfit text-sm font-semibold uppercase tracking-widest text-sage-green mb-6 transition-all duration-700 ${
-              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
-            Advocates & Solicitors of the High Court of Kenya
-          </p>
+         
 
           {/* Headline */}
           <h1

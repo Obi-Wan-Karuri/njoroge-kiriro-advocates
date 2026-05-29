@@ -67,7 +67,7 @@ export default function Contact() {
                   <Phone size={20} className="text-forest-green mt-0.5 shrink-0" />
                   <div>
                     <p className="font-outfit text-xs text-muted uppercase tracking-wider mb-1">Phone</p>
-                    <a href="tel:+254700000000" className="font-outfit text-base text-charcoal hover:text-forest-green transition-colors">+254 700 000 000</a>
+                    <a href="tel:+254705269529" className="font-outfit text-base text-charcoal hover:text-forest-green transition-colors">+254 705 269 529</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -81,7 +81,7 @@ export default function Contact() {
                   <MapPin size={20} className="text-forest-green mt-0.5 shrink-0" />
                   <div>
                     <p className="font-outfit text-xs text-muted uppercase tracking-wider mb-1">Address</p>
-                    <p className="font-outfit text-base text-charcoal">Nairobi, Kenya</p>
+                    <p className="font-outfit text-base text-charcoal">Arbor Hotel, 1st Flr, Kiambu Kamiti Rd</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -93,12 +93,7 @@ export default function Contact() {
                 </li>
               </ul>
             </div>
-            <div className="p-5 border-l-4 border-forest-green bg-warm-white">
-              <p className="font-outfit text-sm text-muted leading-relaxed">
-                <span className="font-semibold text-charcoal">Regulated by the Law Society of Kenya.</span>{" "}
-                All our advocates are admitted to the Roll of Advocates of the High Court of Kenya and hold valid practising certificates.
-              </p>
-            </div>
+           
           </div>
           <div className="bg-warm-white p-8">
             <h3 className="font-cormorant text-2xl font-semibold text-charcoal mb-6">Send Us a Message</h3>

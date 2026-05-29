@@ -8,6 +8,9 @@ import {
   Scale,
   Users,
   Globe,
+  Shield,
+  Leaf,
+  TreePine,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { practiceAreas } from "@/lib/constants";
@@ -19,6 +22,9 @@ const iconMap: Record<string, React.ReactNode> = {
   Scale: <Scale size={28} />,
   Users: <Users size={28} />,
   Globe: <Globe size={28} />,
+  Leaf: <Leaf size={28} />,
+  TreePine: <TreePine size={28} />,
+  Shield: <Shield size={28} />,
 };
 
 export default function PracticeAreas() {
