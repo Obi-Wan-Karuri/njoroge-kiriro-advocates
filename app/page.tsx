@@ -8,6 +8,7 @@ import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import { getPosts } from "@/sanity/lib/sanity";
 
+export const revalidate = 60;
 export default async function Home() {
   const posts = await getPosts();
 
