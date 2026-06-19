@@ -6,7 +6,7 @@ import { getPost, urlFor } from "@/sanity/lib/sanity";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 function formatDate(dateString: string) {
@@ -34,7 +34,8 @@ const components = {
 };
 
 export default async function BlogPost({ params }: Props) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) notFound();
 
