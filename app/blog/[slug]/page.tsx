@@ -44,7 +44,7 @@ export default async function BlogPost({ params }: Props) {
       {/* Header */}
       <div className="bg-charcoal pt-32 pb-16 section-padding">
         <div className="container-max">
-          <Link href="/#blog" className="inline-flex items-center gap-2 font-outfit text-sm text-white/60 hover:text-white transition-colors duration-200 mb-8">
+          <Link href="/blog" className="inline-flex items-center gap-2 font-outfit text-sm text-white/60 hover:text-white transition-colors duration-200 mb-8">
             <ArrowLeft size={16} /> Back to Blog
           </Link>
           {post.category && (
@@ -75,7 +75,7 @@ export default async function BlogPost({ params }: Props) {
 
       {/* Back link */}
       <div className="container-max px-6 md:px-12 lg:px-24 pb-16">
-        <Link href="/#blog" className="inline-flex items-center gap-2 font-outfit text-sm font-medium text-forest-green hover:text-sage-green transition-colors duration-200">
+        <Link href="/blog" className="inline-flex items-center gap-2 font-outfit text-sm font-medium text-forest-green hover:text-sage-green transition-colors duration-200">
           <ArrowLeft size={16} /> Back to Blog
         </Link>
       </div>
