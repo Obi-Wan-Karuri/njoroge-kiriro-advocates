@@ -1,7 +1,7 @@
 // app/blog/page.tsx
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, ArrowRight } from 'lucide-react'
+import { Calendar, ArrowRight, ArrowLeft } from 'lucide-react'
 import { client, urlFor } from '@/sanity/lib/sanity'
 
 export const revalidate = 60
@@ -45,10 +45,18 @@ export default async function BlogPage() {
     <main className="min-h-screen bg-warm-white">
       {/* Page Header */}
       <section data-cursor-theme="dark" className="bg-charcoal pt-32 pb-16 section-padding">
-        <div className="container-max">
-          <p className="font-outfit text-sm uppercase tracking-widest text-sage-green mb-3">
-            Legal Insights
-          </p>
+  <div className="container-max">
+    {/* Back to Home — top of page */}
+    <Link
+      href="/"
+      className="inline-flex items-center gap-2 font-outfit text-sm text-white/60 hover:text-white transition-colors duration-200 mb-8"
+    >
+      <ArrowLeft size={16} /> Back to Home
+    </Link>
+
+    <p className="font-outfit text-sm uppercase tracking-widest text-sage-green mb-3">
+      Legal Insights
+    </p>
           <h1 className="font-cormorant text-5xl md:text-6xl font-semibold text-white leading-tight">
             From Our Desk
           </h1>
@@ -127,15 +135,7 @@ export default async function BlogPage() {
             </div>
           )}
 
-          {/* Back to home */}
-          <div className="mt-16 text-center">
-            <Link
-              href="/"
-              className="font-outfit text-sm text-muted hover:text-forest-green transition-colors duration-200 inline-flex items-center gap-2"
-            >
-              ← Back to Home
-            </Link>
-          </div>
+          
         </div>
       </section>
     </main>

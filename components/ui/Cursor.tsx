@@ -32,7 +32,13 @@ function isDarkAtPoint(x: number, y: number): boolean {
   for (const el of elements) {
     const htmlEl = el as HTMLElement;
 
-    // Explicit marker — highest priority
+     // Explicit light override — highest priority, checked before dark
+    if (
+      htmlEl.getAttribute("data-cursor-theme") === "light" ||
+      htmlEl.closest("[data-cursor-theme='light']")
+    ) return false;
+
+    // Explicit dark marker
     if (
       htmlEl.getAttribute("data-cursor-theme") === "dark" ||
       htmlEl.closest("[data-cursor-theme='dark']")
