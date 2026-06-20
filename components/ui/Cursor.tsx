@@ -19,20 +19,28 @@ function isDarkAtPoint(x: number, y: number): boolean {
   const elements = document.elementsFromPoint(x, y);
 
   for (const el of elements) {
-    // Always treat navbar as dark
+    // Check for explicit dark-theme marker (blog headers, any future dark divs)
+    if (
+      el.getAttribute("data-cursor-theme") === "dark" ||
+      el.closest("[data-cursor-theme='dark']")
+    )
+      return true;
+
+    // Navbar / header tag always dark
     if (el.tagName === "HEADER") return true;
     if (el.closest("header")) return true;
 
-    // Check section ids
+    // Named dark sections
     const section = el.closest("section");
     if (section) {
       if (darkSectionIds.includes(section.id)) return true;
       if (section.classList.contains("bg-charcoal")) return true;
     }
 
-    // Check footer
+    // Footer always dark
     if (el.tagName === "FOOTER" || el.closest("footer")) return true;
   }
+
   return false;
 }
 
@@ -117,7 +125,9 @@ export default function Cursor() {
       {Array.from({ length: TRAIL_LENGTH }, (_, i) => (
         <div
           key={i}
-          ref={(el) => { trailElemsRef.current[i] = el; }}
+          ref={(el) => {
+            trailElemsRef.current[i] = el;
+          }}
           style={{
             position: "fixed",
             top: 0,
