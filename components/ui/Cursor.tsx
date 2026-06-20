@@ -14,38 +14,54 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
+// Dark brand colours in RGB — anything matching these backgrounds = light cursor
+const DARK_BG_COLOURS = [
+  "rgb(28, 28, 30)",   // #1C1C1E charcoal
+  "rgb(26, 77, 53)",   // #1A4D35 forest-green
+  "rgb(45, 122, 85)",  // #2D7A55 sage-green
+];
+
+function isColourDark(colour: string): boolean {
+  return DARK_BG_COLOURS.includes(colour);
+}
+
 function isDarkAtPoint(x: number, y: number): boolean {
   const darkSectionIds = ["hero", "testimonials"];
   const elements = document.elementsFromPoint(x, y);
 
   for (const el of elements) {
-    // Check for explicit dark-theme marker (blog headers, any future dark divs)
+    const htmlEl = el as HTMLElement;
+
+    // Explicit marker — highest priority
     if (
-      el.getAttribute("data-cursor-theme") === "dark" ||
-      el.closest("[data-cursor-theme='dark']")
-    )
-      return true;
+      htmlEl.getAttribute("data-cursor-theme") === "dark" ||
+      htmlEl.closest("[data-cursor-theme='dark']")
+    ) return true;
 
-    // Navbar / header tag always dark
-    if (el.tagName === "HEADER") return true;
-    if (el.closest("header")) return true;
+    // Navbar / header
+    if (htmlEl.tagName === "HEADER" || htmlEl.closest("header")) return true;
 
-    // Named dark sections
-    const section = el.closest("section");
+    // Footer
+    if (htmlEl.tagName === "FOOTER" || htmlEl.closest("footer")) return true;
+
+    // Named dark section IDs
+    const section = htmlEl.closest("section");
     if (section) {
       if (darkSectionIds.includes(section.id)) return true;
-      if (section.classList.contains("bg-charcoal")) return true;
     }
 
-    // Footer always dark
-    if (el.tagName === "FOOTER" || el.closest("footer")) return true;
+    // Check computed background on the element itself — catches divs, cards, placeholders
+    const bg = window.getComputedStyle(htmlEl).backgroundColor;
+    if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent" && isColourDark(bg)) {
+      return true;
+    }
   }
 
   return false;
 }
 
 export default function Cursor() {
-  const [isOnDark, setIsOnDark] = useState(true);
+  const [isOnDark, setIsOnDark] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const mouseRef = useRef<CursorPos>({ x: -100, y: -100 });
   const trailRef = useRef<CursorPos[]>(
@@ -125,9 +141,7 @@ export default function Cursor() {
       {Array.from({ length: TRAIL_LENGTH }, (_, i) => (
         <div
           key={i}
-          ref={(el) => {
-            trailElemsRef.current[i] = el;
-          }}
+          ref={(el) => { trailElemsRef.current[i] = el; }}
           style={{
             position: "fixed",
             top: 0,

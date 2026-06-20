@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "@/lib/constants";
 import Button from "@/components/ui/Button";
@@ -33,25 +34,25 @@ export default function Navbar() {
     >
       <div className="container-max px-6 md:px-12 lg:px-24">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <Image
-              src="/logo_white.png"
-              alt="Njoroge Kiriro & Company Advocates Logo"
-              width={56}
-              height={56}
-              className="h-14 w-auto object-contain"
-              priority
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="font-cormorant text-xl font-semibold text-white tracking-wide">
-                NJOROGE KIRIRO & COMPANY
-              </span>
-              <span className="font-cormorant text-xl font-semibold text-sage-green tracking-wide">
-                ADVOCATES
-              </span>
-            </div>
-          </div>
+          {/* Logo — links to top of page */}
+<Link href="/" className="flex items-center gap-3 group">
+  <Image
+    src="/logo_white.png"
+    alt="Njoroge Kiriro & Company Advocates Logo"
+    width={56}
+    height={56}
+    className="h-14 w-auto object-contain"
+    priority
+  />
+  <div className="flex flex-col leading-tight">
+    <span className="font-cormorant text-xl font-semibold text-white tracking-wide group-hover:text-white/80 transition-colors duration-200">
+      NJOROGE KIRIRO & COMPANY
+    </span>
+    <span className="font-cormorant text-xl font-semibold text-sage-green tracking-wide group-hover:text-sage-green/80 transition-colors duration-200">
+      ADVOCATES
+    </span>
+  </div>
+</Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
