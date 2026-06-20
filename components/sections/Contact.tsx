@@ -56,7 +56,7 @@ export default function Contact() {
         <SectionHeading
           eyebrow="Get in Touch"
           title="Contact Us"
-          subtitle="Ready to discuss your legal matter? Reach out and we will get back to you within one business day."
+          subtitle="Ready to discuss your legal matter? Reach out and we will get back to you."
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-8">
@@ -81,14 +81,14 @@ export default function Contact() {
                   <MapPin size={20} className="text-forest-green mt-0.5 shrink-0" />
                   <div>
                     <p className="font-outfit text-xs text-muted uppercase tracking-wider mb-1">Address</p>
-                    <p className="font-outfit text-base text-charcoal">Arbor Hotel, 1st Flr, Kiambu Kamiti Rd</p>
+                    <p className="font-outfit text-base text-charcoal">Kikinga House Annex, 6th Floor, suite 603, Kiambu</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
                   <MessageCircle size={20} className="text-forest-green mt-0.5 shrink-0" />
                   <div>
                     <p className="font-outfit text-xs text-muted uppercase tracking-wider mb-1">WhatsApp</p>
-                    <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-outfit text-sm text-white bg-forest-green hover:bg-sage-green px-4 py-2 transition-colors duration-200">Chat on WhatsApp</a>
+                    <a href="https://wa.me/254705269529" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-outfit text-sm text-white bg-forest-green hover:bg-sage-green px-4 py-2 transition-colors duration-200">Chat on WhatsApp</a>
                   </div>
                 </li>
               </ul>

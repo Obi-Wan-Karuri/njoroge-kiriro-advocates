@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const stats = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 500, suffix: "+", label: "Cases Handled" },
-  { value: 6, suffix: "", label: "Areas of Practice" },
+  { value: 5, suffix: "+", label: "Years of Experience" },
+  { value: 300, suffix: "+", label: "Cases Handled" },
+  { value: 9, suffix: "", label: "Areas of Practice" },
   { value: 100, suffix: "%", label: "Client Confidentiality" },
 ];
 
@@ -79,13 +79,13 @@ export default function About() {
           <div>
             <SectionHeading
               eyebrow="About the Firm"
-              title="Principled Counsel. Proven Results."
-              subtitle="Founded on the belief that every client deserves clear, honest, and effective legal representation, Njoroge Kiriro Advocates has built a reputation for integrity and excellence across Kenya."
+              title=" "
+              subtitle="Founded on the belief that every client deserves effective legal representation, Njoroge Kiriro Advocates has built a reputation for integrity and excellence across Kenya."
               align="left"
             />
             <p className="font-outfit text-base text-muted leading-relaxed mb-6">
               Our team brings deep expertise across a broad range of practice
-              areas, serving individuals, families, and businesses with the same
+              areas, serving individuals and businesses with the same high
               level of dedication and attention to detail. We take the time to
               understand your situation fully before charting the best path
               forward.
@@ -111,7 +111,7 @@ export default function About() {
                 every step of the legal process."
               </p>
               <p className="font-outfit text-sm text-muted mt-3 uppercase tracking-wider">
-                — Njoroge Kiriro, Principal Advocate
+                — Njoroge Kiriro, Managing Partner
               </p>
             </div>
           </div>

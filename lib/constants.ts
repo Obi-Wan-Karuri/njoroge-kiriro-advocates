@@ -67,43 +67,15 @@ export const faqs = [
   {
     question: "How do I schedule a consultation?",
     answer:
-      "You can reach us by filling out the contact form on this page, calling us directly, or sending a WhatsApp message. We typically respond within one business day to arrange a meeting at our Nairobi offices or via video call.",
+      "You can reach us by filling out the contact form on this page, calling us directly, or sending a WhatsApp message. We typically respond within one business day to arrange a meeting at our offices or via video call.",
   },
-  {
-    question: "What are your legal fees?",
-    answer:
-      "Our fees vary depending on the nature and complexity of the matter. We offer an initial consultation to assess your case, after which we provide a transparent fee estimate. We are committed to providing value-driven legal services with no hidden costs.",
-  },
+  
   {
     question: "Do you represent clients outside Nairobi?",
     answer:
       "Yes. While our offices are based in Nairobi, we regularly advise clients across Kenya and have experience handling matters in various courts and jurisdictions throughout the country.",
   },
-  {
-    question: "How long does a legal matter typically take?",
-    answer:
-      "Timelines depend heavily on the type of matter. Simple conveyancing transactions may take a few weeks, while litigation cases can run for months or longer. We will always give you a realistic timeline at the outset and keep you updated throughout.",
-  },
-  {
-    question: "Can you handle both personal and business legal matters?",
-    answer:
-      "Absolutely. We advise individual clients on matters such as family law, property, and immigration, and we also serve businesses on corporate law, employment, and dispute resolution.",
-  },
-  {
-    question: "Is my information kept confidential?",
-    answer:
-      "Yes. All communications with our firm are strictly confidential and protected by attorney-client privilege. We are bound by the Law Society of Kenya's professional conduct rules and take client privacy very seriously.",
-  },
-  {
-    question: "Do you offer payment plans?",
-    answer:
-      "We understand that legal fees can be a concern. Depending on the matter, we may be able to agree on a structured payment arrangement. Please discuss this with us during your initial consultation.",
-  },
-  {
-    question: "What documents should I bring to my first consultation?",
-    answer:
-      "This depends on your matter. Generally, bring any relevant correspondence, agreements, identification documents, and any court papers if applicable. If you are unsure, contact us in advance and we will advise you specifically.",
-  },
+
 ];
 
 export const testimonials = [

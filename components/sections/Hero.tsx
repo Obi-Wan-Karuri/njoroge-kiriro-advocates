@@ -60,7 +60,7 @@ export default function Hero() {
             }`}
           >
             Njoroge Kiriro Advocates is a Nairobi-based law firm delivering
-            principled, results-driven legal counsel to individuals and
+            insightful, results-driven legal counsel to individuals and
             businesses across Kenya.
           </p>
 

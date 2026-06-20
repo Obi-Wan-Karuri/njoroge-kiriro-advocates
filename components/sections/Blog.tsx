@@ -33,7 +33,7 @@ export default function Blog({ posts }: BlogProps) {
         <SectionHeading
           eyebrow="Legal Insights"
           title="From Our Desk"
-          subtitle="Perspectives on Kenyan law, recent developments, and practical guidance from the advocates at Njoroge Kiriro & Company."
+          subtitle="Perspectives on Kenyan law, recent developments, and practical guidance from our team at Njoroge Kiriro & Company."
         />
 
         {posts.length === 0 ? (

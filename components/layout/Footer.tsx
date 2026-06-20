@@ -16,7 +16,6 @@ export default function Footer() {
                 <span className="font-cormorant text-xl font-semibold text-sage-green tracking-wide">ADVOCATES</span>
               </div>
             </div>
-            <p className="font-outfit text-sm text-white/50 leading-relaxed max-w-xs">Principled legal counsel for individuals and businesses across Kenya. Your rights. Our resolve.</p>
           </div>
           <div>
             <h4 className="font-outfit text-xs font-semibold text-white uppercase tracking-widest mb-5">Quick Links</h4>
@@ -38,11 +37,11 @@ export default function Footer() {
                 <a href="mailto:nkiriro@proton.me" className="font-outfit text-sm text-white/50 hover:text-white transition-colors duration-200">nkiriro@proton.me</a>
               </li>
               <li>
-                <span className="font-outfit text-sm text-white/50">Arbor Hotel, 1st Flr, Kiambu Kamiti Rd</span>
+                <span className="font-outfit text-sm text-white/50">Kikinga House Annex, 6th Floor, suite 603, Kiambu</span>
               </li>
             </ul>
             <div className="flex gap-4">
-              <a href="#" aria-label="LinkedIn" className="font-outfit text-xs text-white/40 hover:text-sage-green transition-colors duration-200 uppercase tracking-wider">LinkedIn</a>
+              <a href="https://www.linkedin.com/company/njoroge-kiriro-company-advocates/" aria-label="LinkedIn" className="font-outfit text-xs text-white/40 hover:text-sage-green transition-colors duration-200 uppercase tracking-wider">LinkedIn</a>
             </div>
           </div>
         </div>

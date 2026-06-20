@@ -51,7 +51,7 @@ export default function PracticeAreas() {
         <SectionHeading
           eyebrow="What We Do"
           title="Our Areas of Practice"
-          subtitle="We offer comprehensive legal services across six core areas, giving individuals and businesses in Kenya access to expert counsel under one roof."
+          subtitle="We offer comprehensive legal services across nine core areas, giving individuals and businesses in Kenya access to expert counsel under one roof."
         />
 
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
