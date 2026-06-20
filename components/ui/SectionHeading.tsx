@@ -33,7 +33,7 @@ export default function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className={`font-outfit text-base leading-relaxed ${subtitleColor}`}>
+        <p className={`font-outfit text-base leading-relaxed ${align === "left" ? "text-justify" : ""} ${subtitleColor}`}>
           {subtitle}
         </p>
       )}
