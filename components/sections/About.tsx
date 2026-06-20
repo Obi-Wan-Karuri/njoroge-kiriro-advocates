@@ -105,8 +105,6 @@ export default function About() {
                 <AnimatedStat key={stat.label} {...stat} triggered={triggered} />
               ))}
             </div>
-            <div className="mt-6 p-6 border-l-4 border-forest-green bg-light-grey">
-            </div>
           </div>
         </div>
       </div>
