@@ -30,7 +30,7 @@ export default function StudioPage() {
 
   return (
     <div
-      data-cursor-theme={scheme === "dark" ? "dark" : "light"}
+      data-cursor-theme={scheme === "dark" ? "light" : "dark"}
       style={{ height: "100vh" }}
     >
       <NextStudio
