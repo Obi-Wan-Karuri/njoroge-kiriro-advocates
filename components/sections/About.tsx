@@ -84,14 +84,14 @@ export default function About() {
               subtitle="Founded on the belief that every client deserves effective legal representation, Njoroge Kiriro Advocates has built a reputation for integrity and excellence across Kenya."
               align="left"
             />
-            <p className="font-outfit text-sm md:text-base text-muted leading-relaxed mb-4 md:mb-6">
+            <p className="font-outfit text-sm md:text-base text-muted leading-relaxed mb-4 md:mb-6 md:text-justify">
               Our team brings deep expertise across a broad range of practice
               areas, serving individuals and businesses with the same high
               level of dedication and attention to detail. We take the time to
               understand your situation fully before charting the best path
               forward.
             </p>
-            <p className="font-outfit text-sm md:text-base text-muted leading-relaxed">
+            <p className="font-outfit text-sm md:text-base text-muted leading-relaxed md:text-justify">
               As members of the Law Society of Kenya, we uphold the highest
               standards of professional conduct. When you engage Njoroge Kiriro
               Advocates, you engage a firm that is as invested in your outcome

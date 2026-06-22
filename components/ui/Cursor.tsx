@@ -76,7 +76,8 @@ export default function Cursor() {
   const [isOnDark, setIsOnDark] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isStudio, setIsStudio] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  // Start as true (hidden) until we confirm a mouse pointer is being used
+  const [isTouch, setIsTouch] = useState(true);
   const mouseRef = useRef<CursorPos>({ x: -100, y: -100 });
   const trailRef = useRef<CursorPos[]>(
     Array.from({ length: TRAIL_LENGTH }, () => ({ x: -100, y: -100 }))
@@ -88,15 +89,30 @@ export default function Cursor() {
 
   useEffect(() => {
     setIsStudio(window.location.pathname.startsWith("/studio"));
-    // Detect touch device — hide cursor on phones and tablets
-    setIsTouchDevice(
-      "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0
-    );
+
+    // Detect actual input type from the first pointer event.
+    // "mouse" = real cursor device, show custom cursor.
+    // "touch" or "pen" = touch screen, keep hidden.
+    const handlePointer = (e: PointerEvent) => {
+      if (e.pointerType === "mouse") {
+        setIsTouch(false);
+      } else {
+        setIsTouch(true);
+      }
+    };
+
+    window.addEventListener("pointerdown", handlePointer);
+    // Also catch hover-only mice that never click
+    window.addEventListener("pointermove", handlePointer);
+
+    return () => {
+      window.removeEventListener("pointerdown", handlePointer);
+      window.removeEventListener("pointermove", handlePointer);
+    };
   }, []);
 
   useEffect(() => {
-    if (isStudio || isTouchDevice) return;
+    if (isStudio || isTouch) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
@@ -157,10 +173,10 @@ export default function Cursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animRef.current);
     };
-  }, [isHovering, isStudio, isTouchDevice]);
+  }, [isHovering, isStudio, isTouch]);
 
   // Don't render on Studio pages or touch devices
-  if (isStudio || isTouchDevice) return null;
+  if (isStudio || isTouch) return null;
 
   const ringColor = isOnDark ? "rgba(249,249,247,0.9)" : "rgba(28,28,30,0.9)";
   const trailColor = isOnDark ? "rgba(249,249,247,1)" : "rgba(28,28,30,1)";
