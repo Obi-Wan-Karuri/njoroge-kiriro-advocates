@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     icon: [
       // Dark mode browser tab — show white logo
       {
-        url: "/favicon.ico",
+        url: "/favicon-white.ico",
         media: "(prefers-color-scheme: dark)",
         sizes: "any",
       },
