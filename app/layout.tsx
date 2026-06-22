@@ -29,10 +29,46 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Njoroge Kiriro Advocates",
     description: "Trusted legal counsel in Kenya.",
-    url: "https://njorogekiriro.co.ke",
+    url: "https://njorogekiriroadvocates.com",
     siteName: "Njoroge Kiriro Advocates",
     locale: "en_KE",
     type: "website",
+  },
+  icons: {
+    icon: [
+      // Dark mode browser tab — show white logo
+      {
+        url: "/favicon.ico",
+        media: "(prefers-color-scheme: dark)",
+        sizes: "any",
+      },
+      // Light mode browser tab — show dark logo
+      {
+        url: "/favicon-dark.ico",
+        media: "(prefers-color-scheme: light)",
+        sizes: "any",
+      },
+      // PNG fallbacks for browsers that prefer PNG
+      {
+        url: "/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "manifest",
+        url: "/site.webmanifest",
+      },
+    ],
   },
 };
 
