@@ -17,7 +17,10 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero"className="relative min-h-screen flex items-center bg-charcoal overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center bg-charcoal overflow-hidden"
+    >
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -37,16 +40,15 @@ export default function Hero() {
       {/* Green accent bar */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-forest-green" />
 
-      <div className="container-max section-padding relative z-10 w-full">
+      <div className="container-max px-6 md:px-12 lg:px-24 relative z-10 w-full pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-3xl">
-         
 
           {/* Headline */}
           <h1
-            className={`font-cormorant font-semibold text-white leading-tight mb-6 transition-all duration-700 delay-150 ${
+            className={`font-cormorant font-semibold text-white leading-tight mb-4 md:mb-6 transition-all duration-700 delay-150 ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
-            style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}
           >
             Your Rights.
             <br />
@@ -55,7 +57,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <p
-            className={`font-outfit text-lg text-white/70 leading-relaxed max-w-xl mb-10 transition-all duration-700 delay-300 ${
+            className={`font-outfit text-base md:text-lg text-white/70 leading-relaxed max-w-xl mb-8 md:mb-10 transition-all duration-700 delay-300 ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
@@ -66,17 +68,18 @@ export default function Hero() {
 
           {/* CTAs */}
           <div
-            className={`flex flex-wrap gap-4 transition-all duration-700 delay-500 ${
+            className={`flex flex-col sm:flex-row gap-3 md:gap-4 transition-all duration-700 delay-500 ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <Button size="lg" onClick={() => scrollTo("#contact")}>
+            <Button size="lg" onClick={() => scrollTo("#contact")} className="w-full sm:w-auto">
               Book a Consultation
             </Button>
             <Button
               size="lg"
               variant="ghost"
               onClick={() => scrollTo("#practice-areas")}
+              className="w-full sm:w-auto"
             >
               Our Practice Areas
             </Button>

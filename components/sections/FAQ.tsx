@@ -11,7 +11,7 @@ export default function FAQ() {
           title="Frequently Asked Questions"
           subtitle="Answers to the questions we hear most often. If you don't find what you're looking for, feel free to get in touch."
         />
-        <div className="max-w-3xl mx-auto">
+        <div className="w-full max-w-3xl mx-auto px-0">
           <Accordion items={faqs} />
         </div>
       </div>

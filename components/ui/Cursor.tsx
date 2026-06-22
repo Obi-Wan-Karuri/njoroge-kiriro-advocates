@@ -35,13 +35,15 @@ function isDarkAtPoint(x: number, y: number): boolean {
     if (
       htmlEl.getAttribute("data-cursor-theme") === "light" ||
       htmlEl.closest("[data-cursor-theme='light']")
-    ) return false;
+    )
+      return false;
 
     // Explicit dark marker
     if (
       htmlEl.getAttribute("data-cursor-theme") === "dark" ||
       htmlEl.closest("[data-cursor-theme='dark']")
-    ) return true;
+    )
+      return true;
 
     // Navbar / header
     if (htmlEl.tagName === "HEADER" || htmlEl.closest("header")) return true;
@@ -74,6 +76,7 @@ export default function Cursor() {
   const [isOnDark, setIsOnDark] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isStudio, setIsStudio] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const mouseRef = useRef<CursorPos>({ x: -100, y: -100 });
   const trailRef = useRef<CursorPos[]>(
     Array.from({ length: TRAIL_LENGTH }, () => ({ x: -100, y: -100 }))
@@ -84,12 +87,16 @@ export default function Cursor() {
   const animRef = useRef<number>(0);
 
   useEffect(() => {
-    // Disable custom cursor entirely on Studio pages
     setIsStudio(window.location.pathname.startsWith("/studio"));
+    // Detect touch device — hide cursor on phones and tablets
+    setIsTouchDevice(
+      "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0
+    );
   }, []);
 
   useEffect(() => {
-    if (isStudio) return;
+    if (isStudio || isTouchDevice) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
@@ -120,7 +127,9 @@ export default function Cursor() {
 
       if (ringRef.current) {
         const size = isHovering ? 56 : 40;
-        ringRef.current.style.transform = `translate(${trail[0].x - size / 2}px, ${trail[0].y - size / 2}px)`;
+        ringRef.current.style.transform = `translate(${
+          trail[0].x - size / 2
+        }px, ${trail[0].y - size / 2}px)`;
         ringRef.current.style.width = `${size}px`;
         ringRef.current.style.height = `${size}px`;
       }
@@ -130,7 +139,9 @@ export default function Cursor() {
         const t = trail[i];
         const size = Math.max(6, 36 - i * 2.5);
         const opacity = (1 - i / TRAIL_LENGTH) * 0.12;
-        el.style.transform = `translate(${t.x - size / 2}px, ${t.y - size / 2}px)`;
+        el.style.transform = `translate(${t.x - size / 2}px, ${
+          t.y - size / 2
+        }px)`;
         el.style.width = `${size}px`;
         el.style.height = `${size}px`;
         el.style.opacity = `${opacity}`;
@@ -146,10 +157,10 @@ export default function Cursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animRef.current);
     };
-  }, [isHovering, isStudio]);
+  }, [isHovering, isStudio, isTouchDevice]);
 
-  // Don't render anything on Studio pages
-  if (isStudio) return null;
+  // Don't render on Studio pages or touch devices
+  if (isStudio || isTouchDevice) return null;
 
   const ringColor = isOnDark ? "rgba(249,249,247,0.9)" : "rgba(28,28,30,0.9)";
   const trailColor = isOnDark ? "rgba(249,249,247,1)" : "rgba(28,28,30,1)";

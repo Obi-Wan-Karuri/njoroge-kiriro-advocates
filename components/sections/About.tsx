@@ -41,12 +41,12 @@ function AnimatedStat({
   }, [triggered, value]);
 
   return (
-    <div className="text-center md:text-left">
-      <p className="font-cormorant text-5xl font-bold text-forest-green">
+    <div className="text-center">
+      <p className="font-cormorant text-4xl md:text-5xl font-bold text-forest-green">
         {count}
         {suffix}
       </p>
-      <p className="font-outfit text-sm text-muted mt-1 uppercase tracking-wider">
+      <p className="font-outfit text-xs md:text-sm text-muted mt-1 uppercase tracking-wider leading-snug">
         {label}
       </p>
     </div>
@@ -74,7 +74,8 @@ export default function About() {
   return (
     <section id="about" className="bg-warm-white section-padding">
       <div className="container-max">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
           {/* Text */}
           <div>
             <SectionHeading
@@ -83,14 +84,14 @@ export default function About() {
               subtitle="Founded on the belief that every client deserves effective legal representation, Njoroge Kiriro Advocates has built a reputation for integrity and excellence across Kenya."
               align="left"
             />
-            <p className="font-outfit text-base text-muted leading-relaxed text-justify mb-6">
+            <p className="font-outfit text-sm md:text-base text-muted leading-relaxed mb-4 md:mb-6">
               Our team brings deep expertise across a broad range of practice
               areas, serving individuals and businesses with the same high
               level of dedication and attention to detail. We take the time to
               understand your situation fully before charting the best path
               forward.
             </p>
-            <p className="font-outfit text-base text-muted leading-relaxed text-justify">
+            <p className="font-outfit text-sm md:text-base text-muted leading-relaxed">
               As members of the Law Society of Kenya, we uphold the highest
               standards of professional conduct. When you engage Njoroge Kiriro
               Advocates, you engage a firm that is as invested in your outcome
@@ -100,7 +101,7 @@ export default function About() {
 
           {/* Stats */}
           <div ref={ref}>
-            <div className="grid grid-cols-2 gap-10 p-10 bg-light-grey">
+            <div className="grid grid-cols-2 gap-6 md:gap-10 p-6 md:p-10 bg-light-grey">
               {stats.map((stat) => (
                 <AnimatedStat key={stat.label} {...stat} triggered={triggered} />
               ))}
