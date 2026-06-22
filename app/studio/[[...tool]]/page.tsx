@@ -8,8 +8,6 @@ export default function StudioPage() {
   const [scheme, setScheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    // Sanity Studio writes data-ui-scheme="light"|"dark" onto its root div.
-    // We watch for that attribute to change and update cursor theme accordingly.
     const detect = () => {
       const studioRoot = document.querySelector("[data-ui-scheme]");
       if (studioRoot) {
@@ -18,10 +16,8 @@ export default function StudioPage() {
       }
     };
 
-    // Run once immediately in case Studio already mounted
     detect();
 
-    // Watch for the attribute appearing or changing
     const observer = new MutationObserver(detect);
     observer.observe(document.body, {
       subtree: true,
@@ -37,7 +33,10 @@ export default function StudioPage() {
       data-cursor-theme={scheme === "dark" ? "dark" : "light"}
       style={{ height: "100vh" }}
     >
-      <NextStudio config={config} />
+      <NextStudio
+        config={config}
+        unstable_noAuthBoundary={false}
+      />
     </div>
   );
 }
