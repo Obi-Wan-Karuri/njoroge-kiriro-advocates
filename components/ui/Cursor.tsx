@@ -14,11 +14,10 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-// Dark brand colours in RGB — anything matching these backgrounds = light cursor
 const DARK_BG_COLOURS = [
-  "rgb(28, 28, 30)",   // #1C1C1E charcoal
-  "rgb(26, 77, 53)",   // #1A4D35 forest-green
-  "rgb(45, 122, 85)",  // #2D7A55 sage-green
+  "rgb(28, 28, 30)",
+  "rgb(26, 77, 53)",
+  "rgb(45, 122, 85)",
 ];
 
 function isColourDark(colour: string): boolean {
@@ -32,7 +31,7 @@ function isDarkAtPoint(x: number, y: number): boolean {
   for (const el of elements) {
     const htmlEl = el as HTMLElement;
 
-     // Explicit light override — highest priority, checked before dark
+    // Explicit light override — highest priority
     if (
       htmlEl.getAttribute("data-cursor-theme") === "light" ||
       htmlEl.closest("[data-cursor-theme='light']")
@@ -56,9 +55,14 @@ function isDarkAtPoint(x: number, y: number): boolean {
       if (darkSectionIds.includes(section.id)) return true;
     }
 
-    // Check computed background on the element itself — catches divs, cards, placeholders
+    // Computed background colour fallback
     const bg = window.getComputedStyle(htmlEl).backgroundColor;
-    if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent" && isColourDark(bg)) {
+    if (
+      bg &&
+      bg !== "rgba(0, 0, 0, 0)" &&
+      bg !== "transparent" &&
+      isColourDark(bg)
+    ) {
       return true;
     }
   }
@@ -69,6 +73,7 @@ function isDarkAtPoint(x: number, y: number): boolean {
 export default function Cursor() {
   const [isOnDark, setIsOnDark] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isStudio, setIsStudio] = useState(false);
   const mouseRef = useRef<CursorPos>({ x: -100, y: -100 });
   const trailRef = useRef<CursorPos[]>(
     Array.from({ length: TRAIL_LENGTH }, () => ({ x: -100, y: -100 }))
@@ -79,6 +84,13 @@ export default function Cursor() {
   const animRef = useRef<number>(0);
 
   useEffect(() => {
+    // Disable custom cursor entirely on Studio pages
+    setIsStudio(window.location.pathname.startsWith("/studio"));
+  }, []);
+
+  useEffect(() => {
+    if (isStudio) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
       setIsOnDark(isDarkAtPoint(e.clientX, e.clientY));
@@ -134,7 +146,10 @@ export default function Cursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animRef.current);
     };
-  }, [isHovering]);
+  }, [isHovering, isStudio]);
+
+  // Don't render anything on Studio pages
+  if (isStudio) return null;
 
   const ringColor = isOnDark ? "rgba(249,249,247,0.9)" : "rgba(28,28,30,0.9)";
   const trailColor = isOnDark ? "rgba(249,249,247,1)" : "rgba(28,28,30,1)";
@@ -147,7 +162,9 @@ export default function Cursor() {
       {Array.from({ length: TRAIL_LENGTH }, (_, i) => (
         <div
           key={i}
-          ref={(el) => { trailElemsRef.current[i] = el; }}
+          ref={(el) => {
+            trailElemsRef.current[i] = el;
+          }}
           style={{
             position: "fixed",
             top: 0,
