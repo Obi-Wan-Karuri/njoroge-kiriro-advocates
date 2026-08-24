@@ -57,12 +57,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 md:space-y-3 mb-5 md:mb-6">
               <li>
-                <a
-                  href="tel:+254705269529"
-                  className="font-outfit text-sm text-white/50 hover:text-white transition-colors duration-200"
-                >
-                  0705 269 529
-                </a>
+                <a href="tel:+254705269529" className="font-outfit text-sm text-white/50 hover:text-white transition-colors duration-200 md:pointer-events-none md:cursor-default md:hover:text-white/50">0705 269 529</a>
               </li>
               <li>
                 <a
@@ -73,11 +68,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span className="font-outfit text-sm text-white/50 leading-relaxed">
-                  Kikinga House Annex,{" "}
-                  <br className="hidden sm:block" />
-                  6th Floor, Suite 603, Kiambu
-                </span>
+                <span className="font-outfit text-sm text-white/50">Doctor's Plaza, Next to KCB Bank Kiambu,<br />6th Floor, Suite 603</span>
               </li>
             </ul>
             <div className="flex gap-4">

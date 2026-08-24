@@ -6,20 +6,32 @@ const schema = z.object({
   email: z.string().email(),
   phone: z.string().min(9),
   subject: z.string().min(1),
-  message: z.string().min(20),
+  message: z.string().optional(),
 });
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "Email service not configured." },
+        { status: 500 }
+      );
+    }
+
     const { Resend } = await import("resend");
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(apiKey);
 
     const body = await req.json();
     const data = schema.parse(body);
 
     await resend.emails.send({
-      from: "Njoroge Kiriro Website <onboarding@resend.dev>",
+      from: "Njoroge Kiriro & Company Advocates <enquiries@njorogekiriroadvocates.com>",
       to: "nkiriro@proton.me",
+      replyTo: data.email,
       subject: `New Enquiry: ${data.subject}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -41,12 +53,14 @@ export async function POST(req: Request) {
               <td style="padding: 8px 0; color: #6b7280;">Practice Area</td>
               <td style="padding: 8px 0; color: #1c1c1e;">${data.subject}</td>
             </tr>
+            ${data.message ? `
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; vertical-align: top;">Message</td>
+              <td style="padding: 8px 0; color: #1c1c1e;">${data.message}</td>
+            </tr>
+            ` : ""}
           </table>
-          <div style="margin-top: 16px; padding: 16px; background: #f0efeb; border-left: 4px solid #1a4d35;">
-            <p style="color: #6b7280; margin: 0 0 8px;">Message</p>
-            <p style="color: #1c1c1e; margin: 0; line-height: 1.6;">${data.message}</p>
-          </div>
-          <p style="color: #6b7280; font-size: 12px; margin-top: 24px;">Sent from the Njoroge Kiriro Advocates website contact form.</p>
+          <p style="color: #6b7280; font-size: 12px; margin-top: 24px;">Sent from the Njoroge Kiriro & Company Advocates website contact form.</p>
         </div>
       `,
     });
